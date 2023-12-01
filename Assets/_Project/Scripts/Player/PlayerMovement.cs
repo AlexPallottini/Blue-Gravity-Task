@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement variables")]
     [Space]
-    [SerializeField, Tooltip("Movement speed of the player"), Range(0.01f, 10f)] private float movementSpeed = 2f;
+    [SerializeField, Tooltip("Movement speed of the player"), Range(0.01f, 20f)] private float movementSpeed = 2f;
 
     private Rigidbody2D rb;
     private PlayerAnimations anim;
