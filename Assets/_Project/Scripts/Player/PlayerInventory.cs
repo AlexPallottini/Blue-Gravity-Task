@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private PlayerInventoryScreen inventoryScreen;
     [SerializeField] private List<ItemSO> availableItems;
     [SerializeField] private PlayerSkinCustomization customization;
+    [SerializeField] private CinemachineVirtualCamera inventoryCamera;
 
     [field: SerializeField] public int CurrentMoney = 10;
 
@@ -47,11 +48,13 @@ public class PlayerInventory : MonoBehaviour
     private void OpenInventoryScreen()
     {
         PlayerActions.Instance.ChangeState(PlayerState.Inventory);
+        inventoryCamera.gameObject.SetActive(true);
         inventoryScreen.Show(availableItems);
     }
     private void CloseInventoryScreen()
     {
         PlayerActions.Instance.ChangeState(PlayerState.Walking);
+        inventoryCamera.gameObject.SetActive(false);
         inventoryScreen.Hide();
     }
 
