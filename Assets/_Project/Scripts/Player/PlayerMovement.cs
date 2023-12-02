@@ -20,9 +20,22 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<PlayerAnimations>();
     }
 
+    private void Start()
+    {
+        PlayerActions.Instance.ChangeState(PlayerState.Walking);
+    }
+
     private void Update()
     {
-        movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        if(PlayerActions.Instance.CurrentState == PlayerState.Walking)
+        {
+            movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        }
+        else
+        {
+            movementDirection = Vector2.zero;
+        }
+
         anim.UpdateWalking(movementDirection);
     }
 

@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 136958267
+    locked: 0
+  - name: Item
+    uniqueID: 1831617725
+    locked: 0
+  - name: Trader
+    uniqueID: 3146127187
+    locked: 0
+  - name: Player
+    uniqueID: 1267220533
+    locked: 0

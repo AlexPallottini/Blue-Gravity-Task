@@ -34,11 +34,11 @@ public class PlayerInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(!inventoryScreen.IsActive)
+            if(PlayerActions.Instance.CurrentState == PlayerState.Walking)
             {
                 OpenInventoryScreen();
             }
-            else
+            else if (PlayerActions.Instance.CurrentState == PlayerState.Inventory)
             {
                 CloseInventoryScreen();
             }
@@ -47,10 +47,12 @@ public class PlayerInventory : MonoBehaviour
     private void OpenInventoryScreen()
     {
         inventoryScreen.Show(availableItems);
+        PlayerActions.Instance.ChangeState(PlayerState.Inventory);
     }
     private void CloseInventoryScreen()
     {
         inventoryScreen.Hide();
+        PlayerActions.Instance.ChangeState(PlayerState.Walking);
     }
 
     public void AddItemToInventory(ItemSO item)
