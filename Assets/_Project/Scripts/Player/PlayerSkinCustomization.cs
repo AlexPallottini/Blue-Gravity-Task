@@ -5,21 +5,40 @@ using UnityEngine.UI;
 
 public class PlayerSkinCustomization : MonoBehaviour
 {
-    [SerializeField] private Image playerHood;
-    [SerializeField] private Image playerFace;
-    [SerializeField] private Image playerTorso;
+    [SerializeField] private SpriteRenderer playerHood;
+    [SerializeField] private SpriteRenderer playerFace;
+    [SerializeField] private SpriteRenderer playerTorso;
 
-    public void UpdatePlayerHood(Sprite sprite)
+    public void UpdatePlayerSkinPart(Sprite sprite, ItemType type)
+    {
+        switch (type) 
+        {
+            case ItemType.Hood:
+                UpdatePlayerHood(sprite);
+                break;
+            case ItemType.Face:
+                UpdatePlayerFace(sprite);
+                break;
+            case ItemType.Torso:
+                UpdatePlayerTorso(sprite);
+                break;
+            default:
+                Debug.LogError("Incorrect or invalid item type");
+                break;
+        }
+    }
+
+    private void UpdatePlayerHood(Sprite sprite)
     {
         playerHood.sprite = sprite;
     }
     
-    public void UpdatePlayerFace(Sprite sprite) 
+    private void UpdatePlayerFace(Sprite sprite) 
     {
         playerFace.sprite = sprite;
     }
 
-    public void UpdatePlayerTorso(Sprite sprite)
+    private void UpdatePlayerTorso(Sprite sprite)
     {
         playerTorso.sprite = sprite;
     }
