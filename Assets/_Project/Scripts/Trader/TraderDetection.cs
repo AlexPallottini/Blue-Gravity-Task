@@ -10,14 +10,15 @@ public class TraderDetection : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            trader.ChangeTradingTextVisibility(true);
+            var inventory = other.GetComponent<PlayerInventory>();
+            trader.ChangeTradingTextVisibility(true, inventory);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            trader.ChangeTradingTextVisibility(false);
+            trader.ChangeTradingTextVisibility(false, null);
         }
     }
 }

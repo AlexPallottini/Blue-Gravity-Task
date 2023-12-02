@@ -19,7 +19,6 @@ public class PlayerInventoryScreen : MonoBehaviour
 
     private Tween alphaTween;
 
-    public bool IsActive { get; private set; } = false;
     private void OnEnable()
     {
         hoodPartsList.OnOutfitChangedSelected += OutfitButtonClicked;
@@ -67,7 +66,6 @@ public class PlayerInventoryScreen : MonoBehaviour
         alphaTween.OnComplete(() =>
         {
             inventoryCG.interactable = true;
-            IsActive = true;
         });
     }
 
@@ -80,7 +78,6 @@ public class PlayerInventoryScreen : MonoBehaviour
         alphaTween.OnComplete(() =>
         {
             inventoryCG.interactable = false;
-            IsActive = false;
         });
     }
 

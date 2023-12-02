@@ -46,13 +46,13 @@ public class PlayerInventory : MonoBehaviour
     }
     private void OpenInventoryScreen()
     {
-        inventoryScreen.Show(availableItems);
         PlayerActions.Instance.ChangeState(PlayerState.Inventory);
+        inventoryScreen.Show(availableItems);
     }
     private void CloseInventoryScreen()
     {
-        inventoryScreen.Hide();
         PlayerActions.Instance.ChangeState(PlayerState.Walking);
+        inventoryScreen.Hide();
     }
 
     public void AddItemToInventory(ItemSO item)
@@ -61,5 +61,10 @@ public class PlayerInventory : MonoBehaviour
         {
             availableItems.Add(item);
         }
+    }
+
+    public void RemoveMoney(int amount)
+    {
+        CurrentMoney -= amount;
     }
 }

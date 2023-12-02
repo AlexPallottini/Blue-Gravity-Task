@@ -7,15 +7,18 @@ using UnityEngine;
 public class Trader : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI tradingText;
+    [SerializeField] private TraderInventory traderInventory;
 
-    public void ChangeTradingTextVisibility(bool showing)
+    private PlayerInventory playerInventory;
+    public void ChangeTradingTextVisibility(bool showing, PlayerInventory playerInventory)
     {
         tradingText.gameObject.SetActive(showing);
+        this.playerInventory = playerInventory;
     }
 
     private void Update()
     {
-        if (tradingText.isActiveAndEnabled && Input.GetKeyDown(KeyCode.E))
+        if (tradingText.isActiveAndEnabled && Input.GetKeyDown(KeyCode.Q))
         {
             if(PlayerActions.Instance.CurrentState == PlayerState.Walking)
             {
@@ -30,12 +33,13 @@ public class Trader : MonoBehaviour
 
     public void BeginTrading()
     {
-        Debug.Log("Started trading");
+        PlayerActions.Instance.ChangeState(PlayerState.Trading);
+        traderInventory.BeginTrading(playerInventory);
     }
 
     public void StopTrading()
     {
-        Debug.Log("Stopped trading");
-
+        PlayerActions.Instance.ChangeState(PlayerState.Walking);
+        traderInventory.StopTrading();
     }
 }
